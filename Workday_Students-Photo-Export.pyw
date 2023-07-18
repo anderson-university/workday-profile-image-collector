@@ -1,3 +1,4 @@
+import os
 import requests
 import base64
 from PIL import Image
@@ -10,7 +11,7 @@ from dotenv import dotenv_values
 
 PATH_TO_ENVIRONMENT_VARIABLES_FILE = f"C:\PATH\TO\.env" # Absolute path to the ".env" file where the various secured credentials are located.
 PATH_TO_LOG_FILE = f"C:\PATH\TO\LOG\FILE\****.log" #Absolute path, including the .log file name, where you want the log file to be created or found.
-PATH_TO_LOCAL_STORAGE_FOLDER_FOR_IMAGE_FILES = f"C:\PATH\TO\PROFILE\PHOTOS\STUDENT" #Absolute path to the local folder where the Student profile images should be stored.
+PATH_TO_LOCAL_STORAGE_FOLDER_FOR_IMAGE_FILES = f"C:\PATH\TO\PROFILE\PHOTOS\STUDENT" #Absolute path to the local folder where the profile images should be stored.
 URL_TO_CR_Students_Profile_Photos = "" # URL to Worday RaaS report "CR_Students_Profile_Photos" (JSON format).
 
 # You ***MUST REPLACE*** the "?Student%21WID=" URL parameter with "?Student%21Student_ID={}" for the batch process to work.
@@ -60,7 +61,6 @@ def main():
         # Reformat the stuIDs list sent in the function's parameter to be separated by an exclamation mark 
         # as is expected by Workday.
         url = url_template.format("!".join(stu_ids))
-        
         # Print the url with the list of student ids used as the report prompt.
         print(url)
         
