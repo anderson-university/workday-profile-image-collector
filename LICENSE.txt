@@ -1,0 +1,50 @@
+Open-Source Version - AGPL License:
+-----------------------------------
+
+This code is provided under the terms of the Affero General Public License (AGPL) version 3.0 or later.
+You are free to use, modify, and distribute this code as long as you adhere to the terms of the AGPL license.
+Additionally, if you use this code in a web service, you must provide access to the source code for users of the service.
+
+Data Protection and Privacy Requirements:
+-----------------------------------------
+
+By using this code, you agree to comply with all applicable data protection and privacy laws, including but not limited to the Family Educational Rights and Privacy Act (FERPA), the Health Insurance Portability and Accountability Act (HIPAA), and any other legal privacy and data protection laws, statutes, or regulations enacted in your jurisdiction.
+
+Users and data processors are solely responsible for ensuring that their use of this code is compliant with relevant data protection and privacy laws. This includes any necessary data processing agreements, data subject consent, security measures, and other obligations as required by law.
+
+Please note that this code is provided as-is, without warranty of any kind. The copyright holder (the author) shall not be held liable for any damages, losses, or legal consequences arising from the use of this code in violation of applicable data protection and privacy laws.
+
+
+Commercial Use:
+---------------
+
+For commercial use, proprietary modifications, or to use this code without complying with the AGPL license requirements, you must obtain a separate commercial license. To inquire about a commercial license, please contact R. Jason Ritchie (commercial-licensing@jasonritchie.net). The commercial license allows you to use the code in proprietary applications or services, subject to the following terms and conditions:
+
+1. Usage Limitations: The commercial license permits the use of this code in your internal projects. It may not be used in products or services that directly compete with the author's offerings or be sold or distributed as a standalone product.
+
+2. Licensing Fees: A licensing fee is required for commercial use. Please contact us at [email address] to inquire about the commercial licensing terms and fees.
+
+3. Warranty and Liability: The code provided under the commercial license is provided as-is, without any warranty of fitness for a particular purpose. The author shall not be held liable for any damages, losses, or legal consequences arising from the use of this code under the commercial license.
+
+4. Customization and Support: Customization services and additional support are available under separate agreements. Please reach out to commercial-licensing@jasonritchie.net for more information.
+
+5. Redistribution: The commercial license does not grant permission to redistribute or sublicense the code. All rights to distribution and redistribution are reserved to the copyright holder.
+
+For further details on the AGPL license, please refer to the LICENSE-AGPL.txt file.
+
+
+Indemnity:
+----------
+
+By using this code under the AGPL license or any separate commercial license, you agree to indemnify and hold harmless the copyright holder (the author) and any contributors from and against any claims, damages, losses, liabilities, costs, and expenses (including reasonable attorney's fees) arising from:
+
+1. Your use, modification, or distribution of the code, whether in compliance with the AGPL license or under a separate commercial license.
+
+2. Any violation of the terms of the AGPL license or the terms and conditions of the separate commercial license.
+
+3. Your failure to comply with any applicable data protection and privacy laws, regulations, or requirements, including but not limited to FERPA, HIPAA, and other legal privacy and data protection laws in your jurisdiction.
+
+4. Any use, misuse, or reliance on the code by you or any third party, including but not limited to issues related to security, accuracy, or fitness for a particular purpose.
+
+This indemnity shall survive the termination or expiration of the AGPL license or any separate commercial license.
+
