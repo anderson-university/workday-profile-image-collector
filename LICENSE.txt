@@ -22,7 +22,7 @@ For commercial use, proprietary modifications, or to use this code without compl
 
 1. Usage Limitations: The commercial license permits the use of this code in your internal projects. It may not be used in products or services that directly compete with the author's offerings or be sold or distributed as a standalone product.
 
-2. Licensing Fees: A licensing fee is required for commercial use. Please contact us at [email address] to inquire about the commercial licensing terms and fees.
+2. Licensing Fees: A licensing fee is required for commercial use. Please contact us at commercial-licensing@jasonritchie.net to inquire about the commercial licensing terms and fees.
 
 3. Warranty and Liability: The code provided under the commercial license is provided as-is, without any warranty of fitness for a particular purpose. The author shall not be held liable for any damages, losses, or legal consequences arising from the use of this code under the commercial license.
 
