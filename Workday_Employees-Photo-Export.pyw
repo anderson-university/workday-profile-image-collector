@@ -22,7 +22,6 @@ IMAGE_FILE_FORMAT = ".png" # Example formats: .png, .jpg, .gif, etc.
     
 ####################################################################
 
-
 # Access the values of environment variables
 env_vars = dotenv_values(PATH_TO_ENVIRONMENT_VARIABLES_FILE)
  
@@ -67,12 +66,27 @@ def main():
         # Access the RaaS URL and process the JSON-formatted data returned.
         try:
             response_employee_photos = requests.get(url, auth=(username, password))
-            data_emp_photos = response_employee_photos.json()
             if response_employee_photos.status_code != 200:
+                # Handle non-2xx status code
+                print(f"HTTP Error: {response_employee_photos.status_code}")
+                print(response_employee_photos.text)
                 alertMessage = "IntSys: Employee Photos - Failed to connect to webservice report for Base64 Photo data."
                 logger.error(alertMessage)
+            else:
+                data_emp_photos = response_employee_photos.json()
+                print(data_emp_photos)
+        except requests.exceptions.HTTPError as errh:
+                print ("HTTP Error:",errh)
+        except requests.exceptions.ConnectionError as errc:
+            print ("Error Connecting:",errc)
+        except requests.exceptions.Timeout as errt:
+            print ("Timeout Error:",errt)
+        except requests.exceptions.RequestException as err:
+            print ("OOps: Something went wrong",err)
+        except json.decoder.JSONDecodeError as json_err:
+            print("JSON Decode Error:", json_err)
         except BaseException as e:
-            alertMessage = "ERROR: Employee Photos - GET photo data failed - %s"%(e)
+            alertMessage = "ERROR: Employee Photos - GET photo data failed - %s"%(repr(e))
             logger.error(alertMessage)
 
         # Loop through each returned record and extract the relevant data.            
@@ -86,25 +100,36 @@ def main():
     
     # Access the Workday report to obtain a list of IDs where a photo is present in the BO record. 
     try:
+        print("Attempting to run and retrieve Employee List report")
         response_employees = requests.get(url_employees, auth=(username, password))
         data_employees = response_employees.json()
         if response_employees.status_code != 200:
             alertMessage = "IntSys: Employees List - Failed to connect to webservice report."
             logger.error(alertMessage)
+            print(alertMessage)
+        else:
+            print("Report retrieval returned 200 Success message.")
     except BaseException as e:
         alertMessage = "ERROR: Employees List - GET report data failed - %s"%(e)
         logger.error(alertMessage)
+        print(alertMessage)
     
     # Loop through the returned JSON-formatted data from the first report and append the Employee IDs from that
     # report to the empIDs list used to populate the Employees%21Employee_ID={} (report prompt) in the report to get 
-    # the Base64 image data.    
-    for employee in data_employees['Report_Entry']:
-        empIDs.append(employee["Employee_ID"])
-        # Once the empIDs list count reachs the defined amount (default: 20), send the list to the process_url
-        # function to get the image data and save it.
-        if len(empIDs) == batch_size:
-            process_url(empIDs)
-            empIDs = []
+    # the Base64 image data.  
+    if not data_employees['Report_Entry']:
+        alertMessage = "0 employee IDs returned."
+        logger.error(alertMessage)
+        print(alertMessage)
+    else: 
+        for employee in data_employees['Report_Entry']:
+            empIDs.append(employee["Employee_ID"])
+            print("Employee IDs returned {empIDs}")
+            # Once the empIDs list count reachs the defined amount (default: 20), send the list to the process_url
+            # function to get the image data and save it.
+            if len(empIDs) == batch_size:
+                process_url(empIDs)
+                empIDs = []
 
     # Process any remaining IDs that didn't form a full batch
     if empIDs:
