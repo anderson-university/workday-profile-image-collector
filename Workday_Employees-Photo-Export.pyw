@@ -1,6 +1,7 @@
 import os
 import requests
 import base64
+import json
 from PIL import Image
 from io import BytesIO
 import logging
@@ -110,7 +111,7 @@ def main():
         else:
             print("Report retrieval returned 200 Success message.")
     except BaseException as e:
-        alertMessage = "ERROR: Employees List - GET report data failed - %s"%(e)
+        alertMessage = "ERROR: Employees List - GET report data failed - %s"%(repr(e))
         logger.error(alertMessage)
         print(alertMessage)
     
@@ -124,7 +125,6 @@ def main():
     else: 
         for employee in data_employees['Report_Entry']:
             empIDs.append(employee["Employee_ID"])
-            print("Employee IDs returned {empIDs}")
             # Once the empIDs list count reachs the defined amount (default: 20), send the list to the process_url
             # function to get the image data and save it.
             if len(empIDs) == batch_size:
