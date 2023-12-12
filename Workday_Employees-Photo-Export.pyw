@@ -90,14 +90,21 @@ def main():
             alertMessage = "ERROR: Employee Photos - GET photo data failed - %s"%(repr(e))
             logger.error(alertMessage)
 
-        # Loop through each returned record and extract the relevant data.            
+       # Loop through each returned record and extract the relevant data.            
         for employee in data_emp_photos['Report_Entry']:
             employee_id = employee.get("Employee_ID","")
+            worker_name = employee.get("Worker","")
             attachment_content = str(employee.get("attachmentContent",""))
             # Decode the Base64 image data and save as an image file to the desired location (variables above).
             image_data = base64.b64decode(attachment_content)
             image = Image.open(BytesIO(image_data))
-            image.save(f"{PATH_TO_LOCAL_STORAGE_FOLDER_FOR_IMAGE_FILES}\{employee_id}{IMAGE_FILE_FORMAT}")
+            if employee_id:
+                image.save(f"{PATH_TO_LOCAL_STORAGE_FOLDER_FOR_IMAGE_FILES}\{employee_id}{IMAGE_FILE_FORMAT}")
+            else:
+                # Handle the case where employee_id is None or an empty string
+                alertMessage = "ERROR: Employee Photos -Employee_ID is None or empty - %s"%(worker_name)
+                logger.error(alertMessage)
+                print(alertMessage)
     
     # Access the Workday report to obtain a list of IDs where a photo is present in the BO record. 
     try:
